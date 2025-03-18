@@ -1,121 +1,54 @@
-I'll help you create a comprehensive plan for your weather visualization dashboard. Here's the detailed outline:
+# React + TypeScript + Vite
 
-### 1. Overall Approach
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-#### Project Structure
-- Create a Vite + React + TypeScript project
-- Implement a modular architecture with separate concerns:
-  - Components (UI elements)
-  - Services (API interactions)
-  - Hooks (shared logic)
-  - Types (TypeScript interfaces)
-  - Utils (helper functions)
-  - Constants (configuration)
+Currently, two official plugins are available:
 
-#### Component Architecture
-- Layout components (header, main content, sidebar)
-- Weather display components (current conditions, forecast)
-- Visualization components (charts, graphs)
-- Error boundary components
-- Loading states and skeletons
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-### 2. Data/Resource Access
+## Expanding the ESLint configuration
 
-#### API Setup
-- Register for OpenWeatherMap API key
-- Create environment variables for API configuration
-- Implement API service layer with axios/fetch
-- Setup type definitions for API responses
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-#### Data Management
-- Implement caching strategy for API responses
-- Create data transformation utilities
-- Setup polling mechanism for real-time updates
-- Implement geolocation services
+```js
+export default tseslint.config({
+  extends: [
+    // Remove ...tseslint.configs.recommended and replace with this
+    ...tseslint.configs.recommendedTypeChecked,
+    // Alternatively, use this for stricter rules
+    ...tseslint.configs.strictTypeChecked,
+    // Optionally, add this for stylistic rules
+    ...tseslint.configs.stylisticTypeChecked,
+  ],
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
+```
 
-### 3. Solution Steps
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-#### Phase 1: Project Setup
-1. Initialize project with Vite
-2. Configure TailwindCSS
-3. Setup shadcn UI
-4. Configure environment variables
-5. Setup folder structure
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-#### Phase 2: Core Features
-1. Implement API service layer
-2. Create basic layout components
-3. Build current weather display
-4. Implement location search
-5. Add forecast visualization
-6. Setup real-time updates
-
-#### Phase 3: Enhanced Features
-1. Add interactive charts
-2. Implement responsive design
-3. Add location management
-4. Implement theme switching
-5. Add weather alerts
-6. Setup PWA capabilities
-
-### 4. Testing & Validation Strategy
-
-#### Unit Testing
-- Test API service functions
-- Test data transformation utilities
-- Test component rendering
-- Test error handling
-
-#### Integration Testing
-- Test API integration
-- Test component interactions
-- Test real-time updates
-- Test error boundaries
-
-#### UI/UX Testing
-- Cross-browser testing
-- Responsive design testing
-- Accessibility testing
-- Performance testing
-
-### 5. Edge Cases & Error Handling
-
-#### API Related
-- Handle API rate limiting
-- Implement retry mechanism
-- Cache previous data for offline access
-- Handle malformed API responses
-
-#### User Experience
-- Handle slow network conditions
-- Implement loading states
-- Show meaningful error messages
-- Handle location permission denials
-
-#### Data Validation
-- Validate API responses
-- Handle missing data fields
-- Implement fallback values
-- Format inconsistent data
-
-#### Browser Compatibility
-- Handle older browser versions
-- Implement feature detection
-- Provide fallback functionality
-- Handle different screen sizes
-
-### 6. Performance Considerations
-
-#### Optimization
-- Implement code splitting
-- Optimize bundle size
-- Use lazy loading for components
-- Implement proper caching strategies
-
-#### Monitoring
-- Setup error tracking
-- Implement performance monitoring
-- Track API response times
-- Monitor user interactions
-
-This outline provides a structured approach to building your weather visualization dashboard. Would you like to proceed with any specific phase or need clarification on any part?
+export default tseslint.config({
+  plugins: {
+    // Add the react-x and react-dom plugins
+    'react-x': reactX,
+    'react-dom': reactDom,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended typescript rules
+    ...reactX.configs['recommended-typescript'].rules,
+    ...reactDom.configs.recommended.rules,
+  },
+})
+```
