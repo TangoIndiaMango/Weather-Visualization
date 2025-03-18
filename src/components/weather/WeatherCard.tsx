@@ -22,7 +22,7 @@ const WeatherCard = ({ title, loading = false, children }: WeatherCardProps) => 
   }
 
   return (
-    <Card>
+    <Card className="p-5">
       <CardHeader>
         <CardTitle>{title}</CardTitle>
       </CardHeader>
