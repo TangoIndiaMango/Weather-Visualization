@@ -18,7 +18,9 @@ function App() {
             {selectedCity && (
               <>
                 <CurrentWeather city={selectedCity} />
-                <WeatherTrends city={selectedCity} />
+                <div className="col-span-2">
+                  <WeatherTrends city={selectedCity} />
+                </div>
               </>
             )}
           </div>
