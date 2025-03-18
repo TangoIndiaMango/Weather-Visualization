@@ -18,7 +18,7 @@ const LocationSearch = ({ onSearch }: LocationSearchProps) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2">
+    <form onSubmit={handleSubmit} className="flex gap-2" data-testid="search-form">
       <Input
         type="text"
         placeholder="Enter city name..."
