@@ -1,23 +1,22 @@
+import { useState } from 'react'
 import RootLayout from './components/layout/RootLayout'
 import ErrorBoundary from './components/ui/ErrorBoundary'
-import WeatherCard from './components/weather/WeatherCard'
+import LocationSearch from './components/weather/LocationSearch'
+import CurrentWeather from './components/weather/CurrentWeather'
 
 function App() {
+  const [selectedCity, setSelectedCity] = useState('')
+
   return (
     <ErrorBoundary>
       <RootLayout>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          <WeatherCard title="Current Weather">
-            {/* Current weather content will go here */}
-          </WeatherCard>
+        <div className="space-y-4">
+          <LocationSearch onSearch={setSelectedCity} />
           
-          <WeatherCard title="Forecast">
-            {/* Forecast content will go here */}
-          </WeatherCard>
-          
-          <WeatherCard title="Weather Stats">
-            {/* Stats content will go here */}
-          </WeatherCard>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {selectedCity && <CurrentWeather city={selectedCity} />}
+            {/* Forecast component will go here */}
+          </div>
         </div>
       </RootLayout>
     </ErrorBoundary>
